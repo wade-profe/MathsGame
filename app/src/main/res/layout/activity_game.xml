@@ -98,8 +98,9 @@
             android:layout_weight="1"
             android:background="@drawable/button_shape"
             android:text="OK"
-            app:backgroundTint="@null"
-            android:textSize="20sp"/>
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:backgroundTint="@null" />
 
         <Button
             android:id="@+id/buttonNext"
@@ -108,7 +109,8 @@
             android:layout_weight="1"
             android:background="@drawable/button_shape"
             android:text="Next"
-            app:backgroundTint="@null"
-            android:textSize="20sp"/>
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:backgroundTint="@null" />
     </LinearLayout>
 </LinearLayout>
