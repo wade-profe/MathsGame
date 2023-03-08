@@ -8,10 +8,12 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.mathsgame.databinding.ActivityNewGameBinding
 import kotlin.random.Random
 
-class NewGameActivity: AppCompatActivity() {
+class NewGameActivity : AppCompatActivity() {
 
-    lateinit var gameBinding : ActivityNewGameBinding
+    lateinit var gameBinding: ActivityNewGameBinding
     var correctAnswer = 0
+    var score = 0
+    var life = 3
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,21 +21,37 @@ class NewGameActivity: AppCompatActivity() {
         val view = gameBinding.root
         setContentView(view)
 
+        gameContinue()
+
         gameBinding.buttonOk.setOnClickListener {
             val input = gameBinding.editTextAnswer.text.toString()
-            if(input == ""){
-                Toast.makeText(applicationContext, "Please write an answer or click the next button", Toast.LENGTH_LONG).show()
+            if (input == "") {
+                Toast.makeText(
+                    applicationContext,
+                    "Please write an answer or click the next button",
+                    Toast.LENGTH_LONG
+                ).show()
+            } else if(input.toInt() == correctAnswer){
+                gameBinding.textViewQuestion.text = "Correct!"
+                gameBinding.scoreInt.text = (++score).toString()
+
+            } else{
+                gameBinding.textViewQuestion.text = "Wrong! The correct answer was $correctAnswer. Press the Next button"
+                gameBinding.lifeInt.text = (--life).toString()
             }
-        }    }
+
+        }
+    }
 
     @SuppressLint("SetTextI18n")
-    fun gameContinue(){
-        val number1 =  Random.nextInt(0,100)
-        val number2 = Random.nextInt(0,100)
+    fun gameContinue() {
+        val number1 = Random.nextInt(0, 100)
+        val number2 = Random.nextInt(0, 100)
 
         gameBinding.textViewQuestion.text = "$number1 + $number2"
-        correctAnswer = number1+number2
+        correctAnswer = number1 + number2
     }
+
 
     /**
      * CountDownTimer is abstract class to create a timer in kotlin
