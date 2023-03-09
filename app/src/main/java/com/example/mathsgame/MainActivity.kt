@@ -8,6 +8,9 @@ import com.example.mathsgame.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity() {
 
     lateinit var mainBinding : ActivityMainBinding
+    val ADD = 1
+    val SUBTRACT = 2
+    val MULTI = 3
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -17,6 +20,17 @@ class MainActivity : AppCompatActivity() {
 
         mainBinding.buttonAdd.setOnClickListener {
             val intent = Intent(this@MainActivity, NewGameActivity::class.java)
+            intent.putExtra("challengeType", ADD)
+            startActivity(intent)
+        }
+        mainBinding.buttonSub.setOnClickListener {
+            val intent = Intent(this@MainActivity, NewGameActivity::class.java)
+            intent.putExtra("challengeType", SUBTRACT)
+            startActivity(intent)
+        }
+        mainBinding.buttonMulti.setOnClickListener {
+            val intent = Intent(this@MainActivity, NewGameActivity::class.java)
+            intent.putExtra("challengeType", MULTI)
             startActivity(intent)
         }
     }
