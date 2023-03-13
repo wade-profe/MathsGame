@@ -16,6 +16,9 @@ class NewGameActivity : AppCompatActivity() {
     var correctAnswer = 0
     var score = 0
     var life = 3
+    private var back_pressed_time: Long = 0
+    private val PERIOD: Long = 1000
+
 
     lateinit var timer : CountDownTimer
     private val startTimerInMillis : Long = 60000
@@ -121,6 +124,13 @@ class NewGameActivity : AppCompatActivity() {
         intent.putExtra("score", score)
         startActivity(intent)
         finish()
+    }
+
+    override fun onBackPressed() {
+        if (back_pressed_time + PERIOD > System.currentTimeMillis()) super.onBackPressed() else Toast.makeText(
+            applicationContext, "Press once again to exit!", Toast.LENGTH_SHORT
+        ).show()
+        back_pressed_time = System.currentTimeMillis()
     }
 
 
